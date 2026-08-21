@@ -7,9 +7,9 @@ import { createRoot } from 'react-dom/client'
 
 const getModelDisplayName = (model) => {
 	return {
-		'gpt-3.5-turbo': 'GPT-3.5-Turbo',
-		'gpt-4': 'GPT-4',
-	}[model] ?? 'GPT';
+		'deepseek-v4-flash': 'Deepseek-V4-Flash',
+		'deepseek-v4-pro': 'Deepseek-V4-Pro',
+	}[model] ?? 'Deepseek';
 }
 const parseEventSource = (data) => {
 	const result = data
@@ -32,7 +32,7 @@ const parseEventSource = (data) => {
 };
 
 const getGPTTranslation = async (originalLyrics, onStream, onDone) => {
-	const model = getSetting('model', 'gpt-3.5-turbo');
+	const model = getSetting('model', 'deepseek-v4-flash');
 	const encodedLyrics = originalLyrics.map((x, i) => `${i+1}. ${x.trim()}`).join('\n');
 	//console.log('encodedLyrics', encodedLyrics);
 	const stream = await getChatCompletionStream([
@@ -133,16 +133,16 @@ const onLyricsUpdate = async (e) => {
 			localLyrics = JSON.parse(localLyrics);
 		} catch {
 			localLyrics = {
-				model: 'gpt-3.5-turbo',
+				model: 'deepseek-v4-flash',
 				GPTResponse: localLyrics,
 				promptVersion: 1,
 			}
 		}
 	}
 	
-	const model = localLyrics?.model ?? getSetting('model', 'gpt-3.5-turbo');
+	const model = localLyrics?.model ?? getSetting('model', 'deepseek-v4-flash');
 	
-	console.log('local gpt-translated lyrics', localLyrics);
+	console.log('local ds-translated lyrics', localLyrics);
 
 	let curIndex = 0;
 	let buffer = '\n', fullGPTResponse = '';
@@ -225,17 +225,17 @@ const saveLocalLyrics = async (hash, fullGPTResponse, model) => {
 		GPTResponse: fullGPTResponse.trim(),
 		promptVersion: 1
 	});
-	await betterncm.fs.mkdir('gpt-translated-lyrics');
-	await betterncm.fs.writeFile(`gpt-translated-lyrics/${hash}.txt`, 
+	await betterncm.fs.mkdir('ds-translated-lyrics');
+	await betterncm.fs.writeFile(`ds-translated-lyrics/${hash}.txt`, 
 		new Blob([content], {
 			type: 'text/plain'
 		})
 	);
 }
 const getLocalLyrics = async (hash) => {
-	if (await betterncm.fs.exists(`gpt-translated-lyrics/${hash}.txt`)) {
+	if (await betterncm.fs.exists(`ds-translated-lyrics/${hash}.txt`)) {
 		return await new Response(
-			await betterncm.fs.readFile(`gpt-translated-lyrics/${hash}.txt`)
+			await betterncm.fs.readFile(`ds-translated-lyrics/${hash}.txt`)
 		).text();
 	} else {
 		return null;

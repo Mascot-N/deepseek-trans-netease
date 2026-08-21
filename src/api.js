@@ -2,7 +2,7 @@ import { getSetting, setSetting } from './utils.js';
 
 
 // from https://github.com/ztjhz/chatgpt-free-app
-const url = 'https://api.openai.com/v1/chat/completions';
+const url = 'https://api.deepseek.com/chat/completions';//更改接口地址
 const getChatCompletionStreamCustomAPI = async (apiKey, messages, config = {presence_penalty: 0, temperature: 1}) => {
 	const response = await fetch(url, {
 		method: 'POST',
@@ -11,7 +11,7 @@ const getChatCompletionStreamCustomAPI = async (apiKey, messages, config = {pres
 			'Authorization': `Bearer ${apiKey}`
 		},
 		body: JSON.stringify({
-			model: getSetting('model', 'gpt-3.5-turbo'),
+			model: getSetting('model', 'deepseek-v4-flash'),
 			messages,
 			...config,
 			stream: true
@@ -30,7 +30,7 @@ const getChatCompletionStreamPublicEndpoint = async (endpoint, messages, config 
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			model: getSetting('model', 'gpt-3.5-turbo'),
+			model: getSetting('model', 'deepseek-v4-flash'),
 			messages,
 			...config,
 			stream: true
@@ -55,7 +55,7 @@ const getChatCompletionStreamPublicEndpoint = async (endpoint, messages, config 
 
 export const getChatCompletionStream = async (messages, config = {presence_penalty: 0, temperature: 1}) => {
 	if (getSetting('api-type', 'public') == 'public') {
-		const endpoint = getSetting('public-api-endpoint', 'https://chatgpt-api.shn.hk/v1/');
+		const endpoint = getSetting('public-api-endpoint', 'https://api.deepseek.com/v1/');
 		console.log('using public api', endpoint);
 
 		try {

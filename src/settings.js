@@ -51,16 +51,16 @@ export function Settings(props) {
 		}).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 	}, []);
 
-	const [ model, setModel ] = useState(getSetting('model', 'gpt-3.5-turbo'));
+	const [ model, setModel ] = useState(getSetting('model', 'deepseek-v4-flash'));
 	const [ apiType, setApiType ] = useState(getSetting('api-type', 'public'));
-	const [ apiEndpoint, setApiEndpoint ] = useState(getSetting('public-api-endpoint', 'https://chatgpt-api.shn.hk/v1/'));
+	const [ apiEndpoint, setApiEndpoint ] = useState(getSetting('public-api-endpoint', 'https://api.deepseek.com/v1/'));
 	const [ apiKey, setApiKey ] = useState(getSetting('api-key', ''));
 
 	return (
 		<ThemeProvider theme={themes[theme]}>
 			<div className='lyric-bar-settings' style={{padding: '15px'}}>
 				<Stack direction="column" spacing={2}>
-					<Typography gutterBottom>在没有中文翻译的歌词界面，点击右侧栏的 GPT 小图标以开始翻译</Typography>
+					<Typography gutterBottom>在没有中文翻译的歌词界面，点击右侧栏的 Deepseek 小图标以开始翻译</Typography>//
 					<FormGroup>					
 						<Stack direction="column" spacing={2} alignItems="flex-start">
 							<FormControl fullWidth>
@@ -74,8 +74,8 @@ export function Settings(props) {
 										setSetting('model', e.target.value);
 									}}
 								>
-									<MenuItem value={'gpt-3.5-turbo'}>GPT-3.5-turbo</MenuItem>
-									<MenuItem value={'gpt-4'}>GPT-4</MenuItem>
+									<MenuItem value={'deepseek-v4-flash'}>Deepseek-V4-Flash</MenuItem>
+									<MenuItem value={'deepseek-v4-pro'}>Deepseek-V4-Pro</MenuItem>
 								</Select>
 							</FormControl>
 							<FormControl style={{ width: 'fit-content' }}>
@@ -95,7 +95,7 @@ export function Settings(props) {
 										label="Public API Endpoint URL"
 										fullWidth
 										variant="filled"
-										defaultValue={getSetting('public-api-endpoint', 'https://chatgpt-api.shn.hk/v1/')}
+										defaultValue={getSetting('public-api-endpoint', 'https://api.deepseek.com/v1/')}
 										onChange={(e) => {
 											setApiEndpoint(e.target.value);
 											setSetting('public-api-endpoint', e.target.value);
@@ -123,9 +123,9 @@ export function Settings(props) {
 
 							
 							<Button variant="outlined" onClick={async () => {
-								await betterncm.fs.mkdir('gpt-translated-lyrics');
+								await betterncm.fs.mkdir('ds-translated-lyrics');
 								await betterncm.app.exec(
-									`explorer "${await betterncm.app.getDataPath()}\\gpt-translated-lyrics"`,
+									`explorer "${await betterncm.app.getDataPath()}\\ds-translated-lyrics"`,
 									false,
 									true,
 								);
