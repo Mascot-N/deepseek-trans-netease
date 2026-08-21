@@ -142,7 +142,7 @@ const onLyricsUpdate = async (e) => {
 	
 	const model = localLyrics?.model ?? getSetting('model', 'deepseek-v4-flash');
 	
-	console.log('local ds-translated lyrics', localLyrics);
+	console.log('local gpt-translated lyrics', localLyrics);
 
 	let curIndex = 0;
 	let buffer = '\n', fullGPTResponse = '';
@@ -225,17 +225,17 @@ const saveLocalLyrics = async (hash, fullGPTResponse, model) => {
 		GPTResponse: fullGPTResponse.trim(),
 		promptVersion: 1
 	});
-	await betterncm.fs.mkdir('ds-translated-lyrics');
-	await betterncm.fs.writeFile(`ds-translated-lyrics/${hash}.txt`, 
+	await betterncm.fs.mkdir('gpt-translated-lyrics');
+	await betterncm.fs.writeFile(`gpt-translated-lyrics/${hash}.txt`, 
 		new Blob([content], {
 			type: 'text/plain'
 		})
 	);
 }
 const getLocalLyrics = async (hash) => {
-	if (await betterncm.fs.exists(`ds-translated-lyrics/${hash}.txt`)) {
+	if (await betterncm.fs.exists(`gpt-translated-lyrics/${hash}.txt`)) {
 		return await new Response(
-			await betterncm.fs.readFile(`ds-translated-lyrics/${hash}.txt`)
+			await betterncm.fs.readFile(`gpt-translated-lyrics/${hash}.txt`)
 		).text();
 	} else {
 		return null;

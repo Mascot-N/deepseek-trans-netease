@@ -123,9 +123,9 @@ export function Settings(props) {
 
 							
 							<Button variant="outlined" onClick={async () => {
-								await betterncm.fs.mkdir('ds-translated-lyrics');
+								await betterncm.fs.mkdir('gpt-translated-lyrics');
 								await betterncm.app.exec(
-									`explorer "${await betterncm.app.getDataPath()}\\ds-translated-lyrics"`,
+									`explorer "${await betterncm.app.getDataPath()}\\gpt-translated-lyrics"`,
 									false,
 									true,
 								);
