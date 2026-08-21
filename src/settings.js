@@ -60,7 +60,7 @@ export function Settings(props) {
 		<ThemeProvider theme={themes[theme]}>
 			<div className='lyric-bar-settings' style={{padding: '15px'}}>
 				<Stack direction="column" spacing={2}>
-					<Typography gutterBottom>在没有中文翻译的歌词界面，点击右侧栏的 Deepseek 小图标以开始翻译</Typography>//
+					<Typography gutterBottom>在没有中文翻译的歌词界面，点击右侧栏的 GPT 小图标以开始翻译（该图标位于RefinedNowPlaying插件，技术有限无法更改，实际模型仍为Deepseek）</Typography>//
 					<FormGroup>					
 						<Stack direction="column" spacing={2} alignItems="flex-start">
 							<FormControl fullWidth>
