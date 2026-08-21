@@ -1,7 +1,7 @@
 {
     "manifest_version": 1,
-    "name": "GPT Trans",
-    "slug": "GPTTrans",
+    "name": "Deepseek Trans",
+    "slug": "DSTrans",
     "author": "Mascot_N, solstice23",
     "author_links": ["https://github.com/Mascot-N"],
     "description": "使用 Deepseek 翻译歌词，复刻自https://github.com/solstice23",
