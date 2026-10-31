@@ -1,3 +1,3 @@
 # LLM Trans
 
-使用自定义大模型翻译歌词，复刻自 https://github.com/solstice23/gpt-trans-netease
+使用任意大模型翻译歌词，复刻自 https://github.com/solstice23/gpt-trans-netease
