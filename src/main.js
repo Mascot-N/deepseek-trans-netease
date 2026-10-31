@@ -162,7 +162,7 @@ Pe=function(messages,params){
     return h.createElement(Uc,{theme:Zc[n]},
         h.createElement("div",{className:"lyric-bar-settings",style:{padding:"15px"}},
             h.createElement(pu,{direction:"column",spacing:2},
-                h.createElement(Js,{gutterBottom:!0},"在歌词界面尚无中文翻译时，点击右侧栏的「GPT」图标即可开始翻译。该图标由 RefinedNowPlaying 插件提供，本插件无法更改其名称；翻译实际调用的模型以下方配置为准。"),
+                h.createElement(Js,{gutterBottom:!0,style:{whiteSpace:"pre-line"}},"在歌词界面尚无中文翻译时，点击右侧栏的「GPT」图标即可开始翻译。\n该图标由 RefinedNowPlaying 插件提供，本插件无法更改其名称；翻译实际调用的模型以下方配置为准。"),
                 h.createElement(su,null,h.createElement(pu,{direction:"column",spacing:2,alignItems:"stretch"},
                     h.createElement(Vs,{label:"API 地址",fullWidth:!0,variant:"filled",value:a,placeholder:"https://api.deepseek.com/v1",helperText:"填写服务商提供的接口地址。仅填至 /v1 亦可，程序会自动补全 /chat/completions；若已持有完整地址，可直接填写。留空时使用默认地址。",onChange:function(ev){i(ev.target.value),he("api-base",ev.target.value);}}),
                     h.createElement(Vs,{label:"API Key",fullWidth:!0,variant:"filled",value:s,placeholder:"sk-...",helperText:"填写服务商提供的 API Key。若使用本地部署且服务端未启用鉴权，可留空。",onChange:function(ev){u(ev.target.value),he("api-key",ev.target.value);}}),
