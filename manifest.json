@@ -9,11 +9,9 @@
     ],
     "description": "用任意 OpenAI 兼容接口翻译歌词，API 地址、Key、模型名称可自由填写。改写自 GPTTrans",
     "preview": "preview.png",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "type": "extension",
-    "requirements": [
-        "RefinedNowPlaying"
-    ],
+    "requirements": [],
     "loadAfter": [
         "RefinedNowPlaying",
         "RefinedNowPlaying-Enhanced",
@@ -26,5 +24,6 @@
                 "file": "main.js"
             }
         ]
-    }
+    },
+    "ncm3-compatible": true
 }
